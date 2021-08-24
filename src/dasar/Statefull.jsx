@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Stateless from './Stateless'
-import Button from './components/Button'
+import Button from './Button'
 
 export default class Statefull extends Component {
   constructor(props) {
