@@ -16,7 +16,7 @@ const Foods = [
 ]
 
 const totalHarga = Foods.reduce(
-  (total, food) => total + food.harga
+  (total, food) => total + food.harga, 0
 )
 
 const Map = () => {
