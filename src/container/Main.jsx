@@ -3,7 +3,7 @@ import Product from '../components/Product'
 import LifecycleUtama from '../dasar/LifecycleUtama'
 import Map from '../dasar/Map'
 
-export default class Home extends Component {
+export default class Main extends Component {
   render() {
     return (
       <div>
