@@ -13,7 +13,7 @@ export default class Header extends Component {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="justify-content-end" style={{ width: "100%" }}>
                 <Nav.Link as={Link} to="/">Home</Nav.Link>
-                <Nav.Link as={Link} to="/about">About</Nav.Link>
+                <Nav.Link as={Link} to="/blog">Blog</Nav.Link>
                 <Nav.Link as={Link} to="/services">Services</Nav.Link>
               </Nav>
             </Navbar.Collapse>

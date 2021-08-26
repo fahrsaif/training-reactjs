@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import { Switch, Route, Redirect } from "react-router-dom";
 import Header from './components/Header'
 import Home from './pages/Home'
-import About from './pages/About'
+import Blog from './pages/Blog'
 import Services from './pages/Services'
+import Footer from './components/Footer'
 
 export default class App extends Component {
   render() {
@@ -14,14 +15,15 @@ export default class App extends Component {
           <Route path="/" exact>
             <Home />
           </Route>
-          <Route path="/about" exact>
-            <About />
+          <Route path="/blog" exact>
+            <Blog />
           </Route>
           <Route path="/services" exact>
             <Services />
           </Route>
           <Redirect to="/" />
         </Switch>
+        <Footer />
       </>
     )
   }

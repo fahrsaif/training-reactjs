@@ -1,0 +1,34 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "nama": "Nasi Goreng",
+      "harga": 10000,
+      "deskripsi": "dengan aerosol"
+    },
+    {
+      "id": 2,
+      "nama": "Mie Goreng",
+      "harga": 8000,
+      "deskripsi": "dengan aerosol"
+    },
+    {
+      "id": 3,
+      "nama": "Tahu Goreng",
+      "harga": 15000,
+      "deskripsi": "dengan aerosol"
+    },
+    {
+      "id": 4,
+      "nama": "Tempe Goreng",
+      "harga": 5000,
+      "deskripsi": "dengan aerosol"
+    },
+    {
+      "id": 5,
+      "nama": "Udang Goreng",
+      "harga": 35000,
+      "deskripsi": "dengan aerosol"
+    }
+  ]
+}
