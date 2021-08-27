@@ -1,3 +1,5 @@
+import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import React, { Component } from 'react'
 import { Button, Col, Container, Row } from 'react-bootstrap'
@@ -8,22 +10,85 @@ export default class CreateProduct extends Component {
   state = {
     dataProducts: [],
     formProduct: {
-      id: 6,
+      id: "",
       nama: "",
       harga: "",
       deskripsi: "",
-    }
+    },
+    isUpdate: false
   };
 
   // API
   getProduct = () => {
     axios
       .get("http://localhost:3004/products")
-      .then(response => {
+      .then((response) => {
         this.setState({
           dataProducts: response.data
         })
       })
+  }
+
+  setFormProduct = (e) => {
+    let formProductNew = { ...this.state.formProduct }
+    formProductNew[e.target.name] = e.target.value
+
+    if (!this.state.isUpdate) {
+      formProductNew['id'] = new Date().getTime()
+    }
+
+    this.setState({
+      formProduct: formProductNew
+    })
+  }
+
+  addProduct = () => {
+    axios
+      .post("http://localhost:3004/products", this.state.formProduct)
+      .then(() => {
+        this.getProduct()
+        this.setState({
+          formProduct: {
+            id: "",
+            nama: "",
+            harga: "",
+            deskripsi: "",
+          }
+        })
+      })
+  }
+
+  handleUpdate = (data) => {
+    this.setState({
+      formProduct: data,
+      isUpdate: true
+    })
+  }
+
+  updateProduct = () => {
+    axios.put(
+      `http://localhost:3004/products/${this.state.formProduct.id}`,
+      this.state.formProduct
+    ).then(() => {
+      this.getProduct()
+      this.setState({
+        formProduct: {
+          id: "",
+          nama: "",
+          harga: "",
+          deskripsi: "",
+        },
+        isUpdate: false
+      })
+    })
+  }
+
+  handleSubmit = () => {
+    if (this.state.isUpdate) {
+      this.updateProduct()
+    } else {
+      this.addProduct()
+    }
   }
 
   deleteProduct = (id) => {
@@ -32,21 +97,6 @@ export default class CreateProduct extends Component {
       .then(response =>
         this.getProduct()
       )
-  }
-
-  updateProduct = (data) => {
-  }
-
-  setFormProduct = (e) => {
-
-  }
-
-  addProduct = (e) => {
-    axios
-      .post("http://localhost:3004/products", this.state.formProduct)
-      .then(response => {
-        console.log(response);
-      })
   }
 
   componentDidMount() {
@@ -67,7 +117,8 @@ export default class CreateProduct extends Component {
                   type="text"
                   className="form-control mt-2"
                   name="nama"
-                  onChange={this.setFormProduct} />
+                  onChange={this.setFormProduct}
+                  value={this.state.formProduct.nama} />
               </div>
               <div className="form-group mt-2">
                 <label htmlFor="harga">Harga</label>
@@ -75,7 +126,8 @@ export default class CreateProduct extends Component {
                   type="text"
                   className="form-control mt-2"
                   name="harga"
-                  onChange={this.setFormProduct} />
+                  onChange={this.setFormProduct}
+                  value={this.state.formProduct.harga} />
               </div>
               <div className="form-group mt-2">
                 <label htmlFor="deskripsi">Deskripsi</label>
@@ -83,11 +135,20 @@ export default class CreateProduct extends Component {
                   name="deskripsi"
                   cols="30"
                   rows="5"
-                  className="form-control mt-2">
-
+                  className="form-control mt-2"
+                  onChange={this.setFormProduct}
+                  value={this.state.formProduct.deskripsi} >
                 </textarea>
               </div>
-              <Button variant="primary" type="submit" className="mt-3" onClick={this.addProduct}>Tambah</Button>
+              <Button
+                variant="primary"
+                type="submit"
+                className="mt-3"
+                onClick={this.handleSubmit}
+              >
+                <FontAwesomeIcon icon={faSave}></FontAwesomeIcon>{" "}
+                Tambah
+              </Button>
             </Col>
             <Col md={8}>
               <TableData>
@@ -98,7 +159,7 @@ export default class CreateProduct extends Component {
                       data={dataProduct}
                       // function
                       delete={this.deleteProduct}
-                      update={this.updateProduct}
+                      update={this.handleUpdate}
                     />
                   )
                 })}
