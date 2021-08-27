@@ -26,7 +26,6 @@ const Hooks = () => {
 
 export default Hooks
 
-
 // export default class Hooks extends Component {
 //   constructor(props) {
 //     super(props)

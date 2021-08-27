@@ -1,44 +1,30 @@
 import { Button } from 'react-bootstrap'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
-export default class Counter extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      order: 0
-    }
-  }
-
-  handleMinus = () => {
-    if (this.state.order > 0) {
-      this.setState({
-        order: this.state.order - 1
-      })
-    }
-  }
-
-  handlePlus = () => {
-    this.setState(
-      {
-        order: this.state.order + 1
-      },
-      () => {
-        this.sendOrderUp(this.state.order)
-      }
-    );
-  }
-
-  sendOrderUp = (newValue) => {
-    this.props.onCounterChange(newValue)
-  }
-
+class Counter extends Component {
   render() {
     return (
       <>
-        <Button variant="danger" onClick={this.handleMinus}> - </Button>{' '}
-        <Button variant="success"> {this.state.order} </Button>{' '}
-        <Button variant="warning" onClick={this.handlePlus}> + </Button>{' '}
+        <Button variant="danger" onClick={this.props.handleMinus}> - </Button>{' '}
+        <Button variant="success"> {this.props.order} </Button>{' '}
+        <Button variant="warning" onClick={this.props.handlePlus}> + </Button>{' '}
       </>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    order: state.totalOrder
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handlePlus: () => dispatch({ type: "ADD_ORDER" }),
+    handleMinus: () => dispatch({ type: "SUBSTRACT_ORDER" })
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Counter)

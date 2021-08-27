@@ -1,33 +1,28 @@
 import React, { Component } from 'react'
 import { Card, Breadcrumb } from 'react-bootstrap'
 import CardProduct from './CardProduct'
+import { connect } from 'react-redux'
 
-export default class Product extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      order: 0
-    }
-  }
-
-  handleCounterChange(newValue) {
-    this.setState({
-      order: newValue
-    })
-  }
-
+class Product extends Component {
   render() {
     return (
       <div>
         <Card>
           <Breadcrumb>
             <Breadcrumb.Item href="#">Product</Breadcrumb.Item>
-            <Breadcrumb.Item href="#" active>Cart : {this.state.order}</Breadcrumb.Item>
+            <Breadcrumb.Item href="#" active>Cart : {this.props.order}</Breadcrumb.Item>
           </Breadcrumb>
         </Card>
-        <CardProduct order={this.state.order} onCounterChange={(value) => this.handleCounterChange(value)} />
+        <CardProduct />
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    order: state.totalOrder
+  }
+}
+
+export default connect(mapStateToProps)(Product)

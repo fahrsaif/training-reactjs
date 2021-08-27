@@ -23,7 +23,7 @@ export default class CardProduct extends Component {
               <Card.Title>{this.state.nama}</Card.Title>
               <Card.Text>{this.state.desc}</Card.Text>
               <h3>Rp. {this.state.harga}</h3>
-              <Counter onCounterChange={(value) => this.props.onCounterChange(value)} />
+              <Counter />
             </Card.Body>
           </Card>
         </Container>
