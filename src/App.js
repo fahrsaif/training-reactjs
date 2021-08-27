@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import Blog from './pages/Blog'
 import Services from './pages/Services'
 import ReactHooks from './pages/ReactHooks'
+import ReactRedux from './pages/ReactRedux'
 import Footer from './components/Footer'
 
 export default class App extends Component {
@@ -24,6 +25,9 @@ export default class App extends Component {
           </Route>
           <Route path="/hooks" exact>
             <ReactHooks />
+          </Route>
+          <Route path="/react-redux" exact>
+            <ReactRedux />
           </Route>
           <Redirect to="/" />
         </Switch>

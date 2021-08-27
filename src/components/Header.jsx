@@ -16,6 +16,7 @@ export default class Header extends Component {
                 <Nav.Link as={Link} to="/blog">Blog</Nav.Link>
                 <Nav.Link as={Link} to="/services">Services</Nav.Link>
                 <Nav.Link as={Link} to="/hooks">Hooks</Nav.Link>
+                <Nav.Link as={Link} to="/react-redux">React Redux</Nav.Link>
               </Nav>
             </Navbar.Collapse>
           </Container>

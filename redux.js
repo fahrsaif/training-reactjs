@@ -1,0 +1,34 @@
+// Store - Reduce - Dispatch - Subscription
+const redux = require('redux')
+const createStore = redux.createStore;
+
+const initialState = {
+  value: 0,
+  age: 26
+}
+
+const rootReducer = (state = initialState, action) => {
+  if (action.type === "ADD_AGE") {
+    return {
+      ...state,
+      age: state.age + 1
+    }
+  }
+  if (action.type === "ADD_VALUE") {
+    return {
+      ...state,
+      value: state.value + action.newValue
+    }
+  }
+  return state
+}
+
+const store = createStore(rootReducer)
+console.log(store.getState())
+
+store.subscribe(() => {
+  console.log("store change:", store.getState())
+})
+
+store.dispatch({ type: "ADD_AGE" })
+store.dispatch({ type: "ADD_VALUE", newValue: 12 })

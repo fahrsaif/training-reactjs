@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Card, Button, Container } from 'react-bootstrap'
+import Counter from './Counter'
 
 export default class CardProduct extends Component {
   constructor(props) {
@@ -8,32 +9,8 @@ export default class CardProduct extends Component {
     this.state = {
       nama: "Cafe Latte",
       desc: "Finest beans grinded composed with some of the best milk from the best cow farm. Served for you",
-      harga: 25000,
-      order: 0
+      harga: 25000
     }
-  }
-
-  handleMinus = () => {
-    if (this.state.order > 0) {
-      this.setState({
-        order: this.state.order - 1
-      })
-    }
-  }
-
-  handlePlus = () => {
-    this.setState(
-      {
-        order: this.state.order + 1
-      },
-      () => {
-        this.sendOrderUp(this.state.order)
-      }
-    );
-  }
-
-  sendOrderUp = (newValue) => {
-    this.props.onCounterChange(newValue)
   }
 
   render() {
@@ -46,9 +23,7 @@ export default class CardProduct extends Component {
               <Card.Title>{this.state.nama}</Card.Title>
               <Card.Text>{this.state.desc}</Card.Text>
               <h3>Rp. {this.state.harga}</h3>
-              <Button variant="danger" onClick={this.handleMinus}> - </Button>{' '}
-              <Button variant="success"> {this.state.order} </Button>{' '}
-              <Button variant="warning" onClick={this.handlePlus}> + </Button>{' '}
+              <Counter onCounterChange={(value) => this.props.onCounterChange(value)} />
             </Card.Body>
           </Card>
         </Container>
