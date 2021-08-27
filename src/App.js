@@ -4,6 +4,7 @@ import Header from './components/Header'
 import Home from './pages/Home'
 import Blog from './pages/Blog'
 import Services from './pages/Services'
+import ReactHooks from './pages/ReactHooks'
 import Footer from './components/Footer'
 
 export default class App extends Component {
@@ -20,6 +21,9 @@ export default class App extends Component {
           </Route>
           <Route path="/services" exact>
             <Services />
+          </Route>
+          <Route path="/hooks" exact>
+            <ReactHooks />
           </Route>
           <Redirect to="/" />
         </Switch>
