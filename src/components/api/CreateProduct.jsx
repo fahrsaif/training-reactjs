@@ -12,7 +12,7 @@ export default class CreateProduct extends Component {
     formProduct: {
       id: "",
       nama: "",
-      harga: "",
+      harga: 0,
       deskripsi: "",
     },
     isUpdate: false
@@ -51,7 +51,7 @@ export default class CreateProduct extends Component {
           formProduct: {
             id: "",
             nama: "",
-            harga: "",
+            harga: 0,
             deskripsi: "",
           }
         })
@@ -75,7 +75,7 @@ export default class CreateProduct extends Component {
         formProduct: {
           id: "",
           nama: "",
-          harga: "",
+          harga: 0,
           deskripsi: "",
         },
         isUpdate: false
@@ -123,7 +123,7 @@ export default class CreateProduct extends Component {
               <div className="form-group mt-2">
                 <label htmlFor="harga">Harga</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control mt-2"
                   name="harga"
                   onChange={this.setFormProduct}

@@ -21,13 +21,13 @@
     {
       "id": 4,
       "nama": "Tempe Goreng",
-      "harga": 5000,
+      "harga": "5000",
       "deskripsi": "dengan aerosol"
     },
     {
       "id": 5,
       "nama": "Udang Goreng",
-      "harga": 35000,
+      "harga": 30000,
       "deskripsi": "dengan aerosol"
     }
   ]
